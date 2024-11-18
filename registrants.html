@@ -5,9 +5,28 @@ registrants
 {% endblock %}
 
 {% block body %}
-<ul>
-    {% for name in registrants %}
-     <li>{{name}} : choosed {{registrants[name]}}</li>
-    {% endfor %}
-</ul>
+<h1>Registrants</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Sport</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for registrants in registrant %}
+        <tr>
+            <td>{{ registrants['name'] }}</td>
+            <td>{{ registrants['sports'] }}</td>
+            <td>
+                <form action="/deregister" method="post">
+                    <input type="hidden" value="{{registrants.id}}" name="id">
+                    <input type="submit" value="deregiter">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
